@@ -1,0 +1,78 @@
+\documentclass[twocolumn]{article}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{multicol}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125em}}
+   \date{}
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+\vspace{1cm}
+
+\Large
+\textbf{CS4044 Pattern Recognition Assignment}\\
+\vspace{1cm}
+\emph{Submitted by}\\        
+\vspace{0.5cm}
+\large
+\textbf{Abhiram Haridas} \hspace{0.75cm}    
+\textbf{B150177CS}\\
+\textbf{Abin P} \hspace{0.75cm}    
+\textbf{B150453CS}\\
+\textbf{Arun Joseph} \hspace{0.75cm}    
+\textbf{B150102CS}\\
+\textbf{Nandu B C} \hspace{0.75cm}
+\textbf{B150144CS}\\
+
+\vspace{.5cm}
+\begin{center}
+ \includegraphics[width=0.4\textwidth]{nitc-logo.png}
+\end{center}
+\vspace{0.8cm}
+\textbf{Department of Computer Science and Engineering}\\
+\textbf{National Institute of Technology Calicut}\\
+\textbf{Calicut, Kerala, India - 673 601}\\
+\vspace{0.8cm}
+\textbf{March 29, 2019}
+\end{center}
+\end{titlepage}
+
+\title{\textbf{Bank Marketing}}
+
+\author{Abhiram Haridas \and Abin P \and Arun Joseph \and Nandu B C}
+
+\twocolumn[
+	\begin{@twocolumnfalse}
+	\maketitle
+    \vspace{0.5cm}
+    \end{@twocolumnfalse}
+]
+
+The assignment aimed at analyzing the data related with direct marketing campaigns of a Portuguese banking institution to predict whether a client would subscribe a term deposit.
+
+\paragraph{}
+The Bank Marketing data was available in two datasets:- one with 45211 tuples, 16 attributes, 5289 positive samples and 39922 negative samples, and an additional dataset with 41188 tuples, 19 attributes, 4640 positive samples and 36548 negative samples. Both the datasets are skewed, as they contain more negative samples than positive samples. Also, some attributes had unknown values like, \textit{job}, \textit{education} and \textit{contact}. A large number of tuples have \textit{pdays} as -1 or 999 and \textit{poutcome} as unknown or nonexistent, indicating clients that have not been contacted in the past.
+
+\paragraph{}
+Further actions which were performed on both the datasets includes adding dummy attributes for categorical features. The target output, \textit{y}, was factorized to obtain integer values. The \textit{pdays} attribute values were modified by replacing -1 with 999. The attribute \textit{duration} was dropped entirely, since it has direct correlation with the final output. Unknown values are taken as a distinct class for each category. Then, PCA was performed on both the datasets.
+
+\paragraph{}
+After performing Principal Component Analysis(PCA), it was found that in the first dataset, 80\% of the variance was captured by 2 attributes, while 95\% of the variance was captured by 5 attributes. In the additional dataset, 80\% of the variance was captured by 6 attributes, while 95\% of the variance was captured by 10 attributes. Before training, oversampling was performed to compensate for the skewed dataset by increasing the size of the positive class 16 times. Finally, bias was added to the dataset. The dataset was split into 70:30 as training and test sets.
+
+\paragraph{}
+The above processed dataset was trained using different models. This includes Logistic Regression with polynomial features with degree 2, \textit{lbfgs} optimiser and 500 iterations, which gave an accuracy of 65\% and F1 score of 45\%. Using Support Vector Machines(SVM) with polynomial features with degree 3, scaled kernel coefficient and a penalty parameter of 1, an accuracy of 60\% and F1 score of 45\% was attained. Using a Random Forest Classifier with 5 trees, an accuracy of 73\% and F1 score of 15\% was attained. For Artificial Neural Network, a Multi-layer Perceptron Classifier(MLPC) with 3 hidden layers, Rectified Linear Unit activation function, regularization parameter of 0.005 and a learning rate of 0.001 was used, which gave an accuracy of 65\% and F1 score of 35\%.
+
+\paragraph{}
+It is observed that SVM classifier gave a slightly better result when compared to Logistic Regression. But the F1 score for both the models were only about 45\%. The low F1 score might be due to lack of good attributes and not having enough data for training the positive class.
+
+\paragraph{}
+The code is available at: \href{https://github.com/arun-Joseph/Bank-Marketing}{https://github.com/arun-Joseph/Bank-Marketing}.
+
+\end{document}
